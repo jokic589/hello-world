@@ -1,0 +1,45 @@
+import pygame
+
+pygame.init()
+
+WIDTH = 640
+HEIGHT = 480
+SIZE = (WIDTH, HEIGHT)
+
+screen = pygame.display.set_mode(SIZE)
+clock = pygame.time.Clock()
+
+# Initialize global variables for animation
+rect_x_henry = 200
+rect_y_henry = 200
+circle_x_henry = 210
+circle_y_henry = 150
+
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Clear the screen
+    screen.fill((0, 0, 0))
+
+    # Update the y to move the shapes up
+    rect_y_henry -= 1
+    circle_y_henry -= 1
+
+    # Draw the background
+    pygame.draw.rect(screen, (255, 255, 255), (0, 0, WIDTH, HEIGHT))
+
+    # Draw the shapes
+    pygame.draw.rect(screen, (150, 75, 0), (rect_x_henry, rect_y_henry, 20, 20))
+    pygame.draw.circle(screen, (255, 0, 0), (circle_x_henry, circle_y_henry), 30)
+
+    pygame.display.flip()
+    clock.tick(30)
+
+    if rect_y_henry < -20:
+        running = False
+
+pygame.quit()
