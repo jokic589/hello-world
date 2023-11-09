@@ -2,30 +2,25 @@ import pygame
 
 pygame.init()
 
-
-x_location = 0
-y_location = 0
-
-w = 1
-bomb = False
-h = 0
-x = 0
-y = 0
-WIDTH = 640
-HEIGHT = 480
-SIZE = (WIDTH, HEIGHT)
-
-screen = pygame.display.set_mode(SIZE)
-clock = pygame.time.Clock()
+w_henry = 1
+bomb_henry = False
+h_henry = 0
+x_henry = 0
+y_henry = 0
+WIDTH_henry = 640
+HEIGHT_henry = 480
+SIZE_henry = (WIDTH_henry, HEIGHT_henry)
+screen_henry = pygame.display.set_mode(SIZE_henry)
+clock_henry = pygame.time.Clock()
 
 # Initialize global variables for animation
-rect_x_henry = 250 + x_location
-rect_y_henry = 200 + y_location
-circle_x_henry = 260 + x_location
-circle_y_henry = 150 + y_location
-bomb_x_henry = 262 + x_location
-bomb_y_henry = 70 + y_location
-bomb_stopped = False
+rect_x_henry = 250
+rect_y_henry = 200
+circle_x_henry = 260
+circle_y_henry = 150
+bomb_x_henry = 262
+bomb_y_henry = 70
+bomb_stopped_henry = False
 
 running = True
 
@@ -36,47 +31,47 @@ while running:
         elif event.type == pygame.MOUSEBUTTONDOWN:
             print(event.pos)
 
-    # Clear the screen
-    screen.fill((0, 0, 0))
+    x_location = 0
+    y_location = 0
 
     # Draw the background
-    pygame.draw.rect(screen, (135, 206, 235), (x_location, y_location, WIDTH, HEIGHT))
+    pygame.draw.rect(screen_henry, (135, 206, 235), (x_location, y_location, WIDTH_henry, HEIGHT_henry))
 
     # Draw the shapes
-    pygame.draw.rect(screen, (150, 75, 0), (rect_x_henry + x, rect_y_henry - y, 20, 20))
-    pygame.draw.circle(screen, (138, 30, 30), (circle_x_henry + x, circle_y_henry - y), 30)
-    pygame.draw.rect(screen, (0, 0, 0), (rect_x_henry + 2 + x, rect_y_henry - 20 - y, 3, 20))
-    pygame.draw.rect(screen, (0, 0, 0), (rect_x_henry + 15 + x, rect_y_henry - 20 - y, 3, 20))
-    pygame.draw.circle(screen, (255, 234, 0), (circle_x_henry - 180, circle_y_henry - 90), 50)
-    pygame.draw.rect(screen, (1, 50, 32), (x_location, y_location + 200, WIDTH, HEIGHT - 400))
+    pygame.draw.rect(screen_henry, (150, 75, 0), (rect_x_henry + x_location + x_henry, rect_y_henry + y_location - y_henry, 20, 20))
+    pygame.draw.circle(screen_henry, (138, 30, 30), (circle_x_henry + x_location + x_henry, circle_y_henry + y_location - y_henry), 30)
+    pygame.draw.rect(screen_henry, (0, 0, 0), (rect_x_henry + x_location + 2 + x_henry, rect_y_henry + y_location - 20 - y_henry, 3, 20))
+    pygame.draw.rect(screen_henry, (0, 0, 0), (rect_x_henry + x_location + 15 + x_henry, rect_y_henry + y_location - 20 - y_henry, 3, 20))
+    pygame.draw.circle(screen_henry, (255, 234, 0), (circle_x_henry + x_location - 180, circle_y_henry + y_location - 90), 50)
+    pygame.draw.rect(screen_henry, (1, 50, 32), (x_location, y_location + 200, WIDTH_henry, HEIGHT_henry - 400))
 
-    y += 1
-    x += 3
+    y_henry += 1
+    x_henry += 3
 
-    if y > HEIGHT - 100:
-        y = 0
-    if y == 140:
-        bomb = True
-    if x == 15 or x == 12 or x == 9 or x == 6:
-        x -= 6
+    if y_henry > HEIGHT_henry - 100:
+        y_henry= 0
+    if y_henry == 140:
+        bomb_henry = True
+    if x_henry == 15 or x_henry == 12 or x_henry == 9 or x_henry == 6:
+        x_henry-= 6
 
-    if bomb and not bomb_stopped:
-        pygame.draw.circle(screen, (0, 0, 0), (bomb_x_henry, bomb_y_henry - h), 5)
-        h -= 1
-    if h <= -130 and not bomb_stopped:
-        pygame.draw.circle(screen, (236, 146, 55), (x_location + 260, y_location + 200), w)
-        w += 1
-        if w == 100:
-            bomb_stopped = True
+    if bomb_henry and not bomb_stopped_henry:
+        pygame.draw.circle(screen_henry, (0, 0, 0), (bomb_x_henry, bomb_y_henry - h_henry), 5)
+        h_henry-= 1
+    if h_henry <= -130 and not bomb_stopped_henry:
+        pygame.draw.circle(screen_henry, (236, 146, 55), (x_location + 260, y_location + 200), w_henry)
+        w_henry+= 1
+        if w_henry == 100:
+            bomb_stopped_henry = True
 
-    if bomb_stopped:
-        bomb = False
-        h = 0
-        w = 1
-        x = 0
-        bomb_stopped = False
+    if bomb_stopped_henry:
+        bomb_henry = False
+        h_henry = 0
+        w_henry= 1
+        x_henry= 0
+        bomb_stopped_henry = False
 
     pygame.display.flip()
-    clock.tick(30)
+    clock_henry.tick(30)
 
 pygame.quit()
