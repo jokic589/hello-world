@@ -733,11 +733,11 @@ while running:
     if h_henry >= 160 and not bomb_stopped_henry:
         pygame.draw.circle(screen, (236, 146, 55), (x + 260, y + 400), w_henry)
         w_henry += 2
+        bomb_henry = False
         if w_henry >= 60:
             bomb_stopped_henry = True
 
     if bomb_stopped_henry:
-        bomb_henry == False
         h_henry = 0
         w_henry = 1
         x_henry = 0
